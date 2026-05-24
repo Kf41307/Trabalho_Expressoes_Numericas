@@ -17,6 +17,8 @@ int main(){
 
     Fila <char> polonesa;
     inicializar(polonesa);
+    Fila <double> variaveis;
+    inicializar(variaveis);
 
     if(validar(expressao)){
         Fila<char> filaInfixa = transformar(expressao);
@@ -26,9 +28,6 @@ int main(){
         mostrarFila(polonesa);
         cout<<endl<<endl;
 
-
-        Fila <double> variaveis;
-        inicializar(variaveis);
 
         for(int i = 0; i < (int) expressao.length(); i++){
             double input = 0;
@@ -53,5 +52,7 @@ int main(){
         cout<<"Expressão digitada é inválida"<<endl;
     }
     
+    liberar(polonesa);
+    liberar(variaveis);
     return 0;
 }

@@ -112,7 +112,7 @@ Fila <char> notacaoPolonesa(Fila <char> f){
             while(!vazia(operadores)){
                 top(operadores, topo);
                 
-                if(topo == '('){
+                if(ehAbre(topo)){
                     break;
                 }
 
