@@ -1,27 +1,32 @@
 #include <iostream>
 using namespace std;
 
+template <typename T>
 struct NoP{
-    char dado;
-    NoP  *anterior, *proximo;
+    T dado;
+    NoP <T>*anterior, *proximo;
 };
 
+template <typename T>
 struct Pilha{
-    NoP * primeiro;
-    NoP * ultimo;
+    NoP <T> * primeiro;
+    NoP <T> * ultimo;
 };
 
-void inicializar(Pilha &p){
+template <typename T>
+void inicializar(Pilha <T> &p){
     p.primeiro = NULL;
     p.ultimo = NULL;
 }
 
-bool vazia(Pilha p){
+template <typename T>
+bool vazia(Pilha <T> p){
     return (p.ultimo == NULL) ? true : false;
 }
 
-bool push(Pilha  &p, char valor){
-    NoP * novo = new NoP;
+template <typename T>
+bool push(Pilha <T> &p, T valor){
+    NoP <T>* novo = new NoP<T>;
 
     if( novo == NULL ) return false;
     novo->dado = valor;
@@ -40,10 +45,11 @@ bool push(Pilha  &p, char valor){
     return true;
 }
 
-bool pop(Pilha &p, char &valor){
+template <typename T>
+bool pop(Pilha <T> &p, T &valor){
     if( vazia(p) ) return false;
 
-    NoP *aux = p.ultimo;
+    NoP <T>* aux = p.ultimo;
     if( aux == NULL ) return false;
     valor = aux->dado;
 
@@ -59,24 +65,27 @@ bool pop(Pilha &p, char &valor){
     return true;
 }
 
-bool top(Pilha &p, char &valor){
+template <typename T>
+bool top(Pilha <T> &p, T &valor){
     if( vazia(p) ) return false;
     valor = p.ultimo->dado;
     return true;
 }
 
-void mostrarPilha(Pilha p){
-    NoP * aux = p.ultimo;
+template <typename T>
+void mostrarPilha(Pilha <T> p){
+    T aux;
 
-    while(aux != NULL){
-        cout<< aux->dado <<"\n";
-        aux = aux->anterior;
+    while(!vazia(p)){
+        pop(p, aux);
+        cout<<aux<<" ";
     }
 }
 
-void liberar(Pilha &p){
-    NoP * aux = p.primeiro;
-    NoP * aux2;
+template <typename T>
+void liberar(Pilha <T> &p){
+    NoP <T>* aux = p.primeiro;
+    NoP <T>* aux2;
     while( aux != NULL ){
         aux2 = aux;
         aux = aux->proximo;

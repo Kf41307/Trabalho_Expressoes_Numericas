@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #ifndef TAM
 #define TAM 50
 #endif
@@ -44,4 +46,16 @@ bool top(Pilha <T> &p, T &valor){
     if( vazia(p) ) return false;
     valor = p.vetor[p.topo];
     return true;
+}
+
+template <typename T>
+void mostrarPilha(Pilha <T> p){
+    if(vazia(p)){
+        cout<<"Pilha vazia"<<endl;
+        return;
+    }
+
+    for(int i = p.topo; i >= 0; i--){
+        cout << p.vetor[i] << "\n";
+    }
 }

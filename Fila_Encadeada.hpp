@@ -1,27 +1,32 @@
 #include <iostream>
 using namespace std;
 
+template <typename T>
 struct NoF{
-    char dado;
-    NoF *proximo, *anterior;
+    T dado;
+    NoF <T> *proximo, *anterior;
 };
 
+template <typename T>
 struct Fila{
-    NoF * primeiro;
-    NoF * ultimo;
+    NoF <T>* primeiro;
+    NoF <T>* ultimo;
 };
 
-void inicializar(Fila &f){
+template <typename T>
+void inicializar(Fila <T> &f){
     f.primeiro = NULL;
     f.ultimo = NULL;
 }
 
-bool vazia(Fila f){
+template <typename T>
+bool vazia(Fila <T> f){
     return (f.ultimo == NULL) ? true : false;
 }
 
-bool queue(Fila &f, char valor){
-    NoF *novo = new NoF;
+template <typename T>
+bool queue(Fila <T> &f, T valor){
+    NoF <T>*novo = new NoF<T>;
 
     if(novo == NULL) return false;
 
@@ -40,10 +45,11 @@ bool queue(Fila &f, char valor){
     return true;
 }
 
-bool dequeue(Fila &f , char &valor){
+template <typename T>
+bool dequeue(Fila <T> &f , T &valor){
     if(vazia(f)) return false;
 
-    NoF *aux = f.primeiro;
+    NoF <T>*aux = f.primeiro;
 
     valor = aux->dado;
 
@@ -58,8 +64,16 @@ bool dequeue(Fila &f , char &valor){
     return true;
 }
 
-void mostrarFila(Fila  f){
-    NoF * aux = f.primeiro;
+template <typename T>
+void head(Fila <T> f, T &valor){
+    valor = f.primeiro->dado;
+}
+
+
+
+template <typename T>
+void mostrarFila(Fila <T> f){
+    NoF <T>* aux = f.primeiro;
 
     while(aux != NULL){
         cout<<aux->dado<<" ";
@@ -67,9 +81,10 @@ void mostrarFila(Fila  f){
     }
 }
 
-void liberar(Fila &f){
-    NoF *aux = f.primeiro;
-    NoF *aux2;
+template <typename T>
+void liberar(Fila <T> &f){
+    NoF <T> *aux = f.primeiro;
+    NoF <T> *aux2;
     while( aux != NULL){
         aux2 = aux;
         aux = aux->proximo;
